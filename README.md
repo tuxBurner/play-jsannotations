@@ -14,7 +14,7 @@ resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo"
 Add a dependency on the following artifact:
 
 ```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-jsannotations" % "1.0.0"
+libraryDependencies += "com.github.tuxBurner" %% "play-jsannotations" % "1.2.0"
 ```
 
 Activate the plugin in the `conf/play.plugins` like this:
