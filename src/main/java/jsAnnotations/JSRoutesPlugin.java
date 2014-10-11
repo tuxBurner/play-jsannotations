@@ -1,4 +1,4 @@
-package plugins.jsAnnotations;
+package jsAnnotations;
 
 
 import org.reflections.Reflections;
@@ -38,10 +38,6 @@ public class JSRoutesPlugin extends Plugin {
 
     }
 
-
-    public void $init$() {
-
-    }
 
     @Override
     public void onStart() {
@@ -126,7 +122,7 @@ public class JSRoutesPlugin extends Plugin {
     }
 
     public static String getJSContent(String host) {
-        return play.api.Routes.javascriptRouter("jsRoutes", Scala.Option("jQuery.ajax"), host, Scala.toSeq(JSRoutesPlugin.jsRoutes.toArray(new Router.JavascriptReverseRoute[JSRoutesPlugin.jsRoutes.size()])));
+        return play.api.Routes.javascriptRouter("jsRoutes", Scala.Option("jQuery.ajax"), host, Scala.toSeq(JSRoutesPlugin.jsRoutes.toArray(new Router.JavascriptReverseRoute[JSRoutesPlugin.jsRoutes.size()]))).text();
         //return Routes.javascriptRouter("jsRoutes", JSRoutesPlugin.jsRoutes.toArray(new Router.JavascriptReverseRoute[JSRoutesPlugin.jsRoutes.size()]));
     }
 

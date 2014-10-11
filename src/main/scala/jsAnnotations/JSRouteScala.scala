@@ -1,4 +1,4 @@
-package plugins.jsAnnotations
+package jsAnnotations
 
 import play.api.mvc.{Controller, Action}
 
