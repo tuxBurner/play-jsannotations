@@ -1,6 +1,6 @@
 # Play JsAnnotations library
 
-This is a simple Play 2.1 plugin, which allows you to expose the routes for javascript with an simple @JSRoute.
+This is a simple Play 2.3 plugin, which allows you to expose the routes for javascript with an simple @JSRoute.
 The advantage over the "normal" way in play is that you just to have to annotate the Result and it will be exposed as a javascript route.
 
 ## Installation (using sbt)
@@ -14,7 +14,7 @@ resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo"
 Add a dependency on the following artifact:
 
 ```scala
-libraryDependencies += "com.github.tuxBurner" %% "play-jsannotations" % "1.2.1"
+libraryDependencies += "com.github.tuxBurner" %% "play-jsannotations" % "1.2.2"
 ```
 
 Activate the plugin in the `conf/play.plugins` like this:
