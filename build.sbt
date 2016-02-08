@@ -1,18 +1,18 @@
 name := "play-jsannotations"
 
-version := "1.2.3-SNAPSHOT"
+version := "2.4.0-SNAPSHOT"
 
 organization := "com.github.tuxBurner"
 
 resolvers += "Typesafe Releases" at "http://repo.typesafe.com/typesafe/releases/"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.11.6"
 
-crossScalaVersions := Seq("2.10.4", "2.11.1")
+crossScalaVersions := Seq("2.10.4", "2.11.6")
 
 libraryDependencies ++= Seq(
-   "com.typesafe.play" %% "play" % "2.3.7",
-   "com.typesafe.play" %% "play-java" % "2.3.7"
+   "com.typesafe.play" %% "play" % "2.4.6",
+   "com.typesafe.play" %% "play-java" % "2.4.6"
 )
 
 publishTo <<= version {
