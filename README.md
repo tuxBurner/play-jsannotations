@@ -30,7 +30,7 @@ Just annotate a Result like this:
 
 ```java
      @JSRoute
-     public static Result doSomething() {
+     public Result doSomething() {
         return ok("I did somethin");
      }
 ```
