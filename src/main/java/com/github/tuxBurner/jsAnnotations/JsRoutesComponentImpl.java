@@ -8,12 +8,15 @@ import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.springframework.util.CollectionUtils;
 
+import play.Environment;
 import play.Routes;
+
 import play.api.Play;
 import play.api.routing.JavaScriptReverseRoute;
-import play.inject.ApplicationLifecycle;
-import play.libs.F;
+
+
 import play.mvc.Controller;
+import play.mvc.Result;
 import play.mvc.Results;
 import play.twirl.api.JavaScript;
 
@@ -39,20 +42,19 @@ public class JsRoutesComponentImpl implements JsRoutesComponent {
     private static String JSROUTES_CLASS_NAME = "controllers.routes$javascript";
 
     /**
+     * We need the environment for class loading.
+     */
+    private final Environment environment;
+
+    /**
      * The js routes which match the annotation
      */
     private Set<JavaScriptReverseRoute> jsRoutes = new HashSet<>();
 
     @Inject
-    public JsRoutesComponentImpl(ApplicationLifecycle lifecycle) {
-        // previous contents of Plugin.onStart
-
+    public JsRoutesComponentImpl(Environment environment) {
+        this.environment = environment;
         onStart();
-
-        lifecycle.addStopHook(() -> {
-            // previous contents of Plugin.onStop
-            return F.Promise.pure(null);
-        });
     }
 
     /**
@@ -60,7 +62,7 @@ public class JsRoutesComponentImpl implements JsRoutesComponent {
      */
     private void onStart() {
         // Get the classloader of the current running app
-        final ClassLoader classLoader = Play.classloader(Play.current());
+        final ClassLoader classLoader = environment.classLoader();
         Class<?> staticJsClass;
         try {
             staticJsClass = Class.forName(JSROUTES_CLASS_NAME, true, classLoader);
@@ -70,7 +72,6 @@ public class JsRoutesComponentImpl implements JsRoutesComponent {
             }
             return;
         }
-
 
         final Set<Method> jsRouteAnnotatedMethods = getJsRouteAnnotatedMethods();
 
@@ -173,7 +174,7 @@ public class JsRoutesComponentImpl implements JsRoutesComponent {
         return reverseNameForAnnotated;
     }
 
-    public Results.Status getJsRoutesResult() {
+    public Result getJsRoutesResult() {
         if (jsRoutes != null && jsRoutes.isEmpty() == false) {
             Controller.response().setContentType("text/javascript");
             return Results.ok(getJSContent(play.mvc.Http.Context.current().request().host()));

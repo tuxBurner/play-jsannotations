@@ -1,6 +1,7 @@
 package com.github.tuxBurner.jsAnnotations;
 
 
+import com.google.inject.AbstractModule;
 import play.Logger;
 import play.api.Configuration;
 import play.api.Environment;
@@ -9,18 +10,18 @@ import play.api.inject.Module;
 import scala.collection.Seq;
 
 /**
- * The module which handles evrything.
+ * The module which handles everything.
  */
-public class JsRoutesModule extends Module {
+public class JsRoutesModule extends AbstractModule {
 
     /**
      * The logger of this module.
      */
     public static Logger.ALogger LOGGER = Logger.of(JsRoutesModule.class);
 
-    public Seq<Binding<?>> bindings(Environment environment, Configuration configuration) {
-        return seq(
-                bind(JsRoutesComponent.class).to(JsRoutesComponentImpl.class)
-        );
+
+    @Override
+    protected void configure() {
+        bind(JsRoutesComponent.class).to(JsRoutesComponentImpl.class);
     }
 }

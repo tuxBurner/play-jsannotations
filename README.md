@@ -17,7 +17,7 @@ Add a dependency on the following artifact:
 libraryDependencies += "com.github.tuxBurner" %% "play-jsannotations" % "2.4.0"
 ```
 
-Activate the plugin in the `conf/application.conf` like this:
+Activate the module in the `conf/application.conf` like this:
 
 ```
 play.modules.enabled  += "com.github.tuxBurner.jsAnnotations.JsRoutesModule"

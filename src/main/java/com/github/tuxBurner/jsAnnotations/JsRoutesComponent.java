@@ -1,7 +1,7 @@
 package com.github.tuxBurner.jsAnnotations;
 
 import play.api.routing.JavaScriptReverseRoute;
-import play.mvc.Results;
+import play.mvc.Result;
 
 import java.util.Set;
 
@@ -22,7 +22,7 @@ public interface JsRoutesComponent {
      *
      * @return
      */
-    Results.Status getJsRoutesResult();
+    Result getJsRoutesResult();
 
     /**
      * Returns the actual js content which represents the handling for the annotated routes.
