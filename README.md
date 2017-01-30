@@ -24,6 +24,15 @@ play.modules.enabled  += "com.github.tuxBurner.jsAnnotations.JsRoutesModule"
 ```
 
 
+## Logging 
+
+To enable logging or change the level you can configure the logger in your *conf/logback.xml*
+
+```xml
+<logger name="com.github.tuxBurner.jsAnnotations.JsRoutesModule" level="DEBUG" />
+```
+
+
 ## Usage
 
 Just annotate a Result like this:
