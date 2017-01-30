@@ -11,8 +11,8 @@ scalaVersion := "2.11.7"
 crossScalaVersions := Seq("2.10.4", "2.11.7")
 
 libraryDependencies ++= Seq(
-   "com.typesafe.play" %% "play" % "2.5.10",
-   "com.typesafe.play" %% "play-java" % "2.5.10"
+   "com.typesafe.play" %% "play" % "2.5.12",
+   "com.typesafe.play" %% "play-java" % "2.5.12"
 )
 
 publishTo <<= version {
