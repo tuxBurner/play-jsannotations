@@ -5,7 +5,7 @@ The advantage over the "normal" way in play is that you just to have to annotate
 
 ## Installation (using sbt)
 
-You will need to add the following resolver in your `project/Build.scala` file:
+You will need to add the following resolver in your `build.sbt` file:
 
 ```scala
 resolvers += "tuxburner.github.io" at "http://tuxburner.github.io/repo"
@@ -85,7 +85,7 @@ Finally you can call the route in javascript like this:
       alert(data);
     },
     error: function (data) {
-      alert('Error')
+      alert('Error');
     }
   });
 ```
