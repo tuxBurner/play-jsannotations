@@ -3,16 +3,12 @@ package com.github.tuxBurner.jsAnnotations;
 
 import com.google.inject.AbstractModule;
 import play.Logger;
-import play.api.Configuration;
-import play.api.Environment;
-import play.api.inject.Binding;
-import play.api.inject.Module;
-import scala.collection.Seq;
 
 /**
  * The module which handles everything.
  */
-public class JsRoutesModule extends AbstractModule {
+public class JsRoutesModule extends AbstractModule
+{
 
     /**
      * The logger of this module.

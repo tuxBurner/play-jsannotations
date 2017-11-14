@@ -6,18 +6,11 @@ import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
-import org.springframework.util.CollectionUtils;
-
 import play.Environment;
-import play.Routes;
-
-import play.api.Play;
 import play.api.routing.JavaScriptReverseRoute;
-
-
-import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Results;
+import play.routing.JavaScriptReverseRouter;
 import play.twirl.api.JavaScript;
 
 import javax.inject.Inject;
@@ -75,7 +68,7 @@ public class JsRoutesComponentImpl implements JsRoutesComponent {
 
         final Set<Method> jsRouteAnnotatedMethods = getJsRouteAnnotatedMethods();
 
-        if (CollectionUtils.isEmpty(jsRouteAnnotatedMethods) == true) {
+        if (jsRouteAnnotatedMethods == null || jsRouteAnnotatedMethods.size() == 0) {
             if (JsRoutesModule.LOGGER.isDebugEnabled() == true) {
                 JsRoutesModule.LOGGER.debug("Found no cotroller method annotated with: " + JSRoute.class.getCanonicalName());
             }
@@ -176,15 +169,14 @@ public class JsRoutesComponentImpl implements JsRoutesComponent {
 
     public Result getJsRoutesResult() {
         if (jsRoutes != null && jsRoutes.isEmpty() == false) {
-            Controller.response().setContentType("text/javascript");
-            return Results.ok(getJSContent(play.mvc.Http.Context.current().request().host()));
+            return Results.ok(getJSContent(play.mvc.Http.Context.current().request().host())).as("text/javascript");
         } else {
             return Results.internalServerError("No jsroutes found in the Plugin: " + JsRoutesComponentImpl.class.getCanonicalName());
         }
     }
 
     public String getJSContent(String host) {
-        JavaScript jsRoutesJs = Routes.javascriptRouter("jsRoutes",
+        JavaScript jsRoutesJs = JavaScriptReverseRouter.create("jsRoutes",
                 jsRoutes.toArray(new JavaScriptReverseRoute[jsRoutes.size()]));
 
         return jsRoutesJs.text();
